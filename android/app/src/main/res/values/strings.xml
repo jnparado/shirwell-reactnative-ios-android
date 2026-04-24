@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Shirwell Bancan App</string>
+    <!-- AdMob → App settings → App ID (must contain ~). Replace if ads do not load. -->
+    <string name="admob_application_id" translatable="false">ca-app-pub-2495432679632375~1624956947</string>
+    <!-- Ad unit: openshirwell (App open) -->
+    <string name="admob_app_open_unit_id" translatable="false">ca-app-pub-2495432679632375/6595690949</string>
+</resources>

@@ -1,0 +1,6 @@
+--- adb starting (pid 37372) ---
+04-25 04:57:26.501 37372 551453 I adb     : main.cpp:66 Android Debug Bridge version 1.0.41
+04-25 04:57:26.501 37372 551453 I adb     : main.cpp:66 Version 37.0.0-14910828
+04-25 04:57:26.501 37372 551453 I adb     : main.cpp:66 Installed as /Users/gwenson/Library/Android/sdk/platform-tools/adb
+04-25 04:57:26.501 37372 551453 I adb     : main.cpp:66 Running on Darwin 25.4.0 (arm64)
+04-25 04:57:26.501 37372 551453 I adb     : main.cpp:66 
