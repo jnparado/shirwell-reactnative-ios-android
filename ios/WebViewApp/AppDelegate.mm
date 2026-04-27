@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 
+#import <GoogleMobileAds/GoogleMobileAds.h>
 #import <React/RCTBundleURLProvider.h>
 
 @implementation AppDelegate
@@ -11,7 +12,9 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
-  return [super application:application didFinishLaunchingWithOptions:launchOptions];
+  BOOL ok = [super application:application didFinishLaunchingWithOptions:launchOptions];
+  [[GADMobileAds sharedInstance] startWithCompletionHandler:nil];
+  return ok;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
@@ -24,7 +27,13 @@
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
 #else
-  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  NSURL *releaseBundle = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  if (releaseBundle != nil) {
+    return releaseBundle;
+  }
+
+  // If you run a non-Debug scheme without bundling JS, fall back to Metro so the app can still boot.
+  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
 #endif
 }
 

@@ -1,3 +1,4 @@
 <resources>
-    <color name="ic_launcher_background">#000000</color>
+    <!-- Matches Shirwell Bancan promo (dark + gold); adaptive icon outer plate -->
+    <color name="ic_launcher_background">#0D0B06</color>
 </resources>

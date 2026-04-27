@@ -113,8 +113,8 @@ android {
         applicationId "com.shirwell.shirwell"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 58
-        versionName "1.0.58"
+        versionCode 61
+        versionName "1.0.61"
     }
     signingConfigs {
         debug {

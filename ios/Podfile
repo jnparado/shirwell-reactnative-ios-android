@@ -17,6 +17,9 @@ end
 target 'WebViewApp' do
   config = use_native_modules!
 
+  # AdMob banner (native iOS; App ID from Info.plist GADApplicationIdentifier)
+  pod 'Google-Mobile-Ads-SDK', '~> 11.13'
+
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
@@ -36,5 +39,29 @@ target 'WebViewApp' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    # Xcode 26.4+ compatibility:
+    # - fmt 11.0.2 fails with C++20 consteval checks → compile only fmt as C++17
+    # - some pods (glog/Yoga) trigger non-modular include errors when building as frameworks
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |bc|
+        bc.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+      end
+
+      if target.name == 'fmt'
+        target.build_configurations.each do |bc|
+          bc.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+        end
+      end
+
+      # Ensure Hermes produces a matching dSYM so Xcode can upload symbols.
+      # Without this, archives may upload fine but crash reports won't symbolicate.
+      if target.name == 'hermes-engine' || target.name == 'hermes'
+        target.build_configurations.each do |bc|
+          bc.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
+          bc.build_settings['GCC_GENERATE_DEBUGGING_SYMBOLS'] = 'YES'
+        end
+      end
+    end
   end
 end

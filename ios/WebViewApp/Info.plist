@@ -2,10 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- AdMob: iOS app → App settings → App ID (must contain ~). Replace if this is your Android ID only. -->
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-2495432679632375~1624956947</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>WebViewApp</string>
+	<string>ShirwellBancan</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
